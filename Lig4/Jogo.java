@@ -25,9 +25,9 @@ public class Jogo {
     	
     	tabuleiro.inicializarTabuleiro();
         tabuleiro.imprimirTabuleiro();
-        boolean vitoria = false;
+        int vitoria = 0;
 
-        while (!vitoria && !tabuleiro.isTabuleiroCheio()) {
+        while (vitoria == 0 && !tabuleiro.isTabuleiroCheio()) {
             System.out.println(jogadorAtual.getNome() + ", digite a coluna (1-7) para inserir a peça: ");
             int coluna = sc.nextInt()-1;
         
@@ -43,18 +43,21 @@ public class Jogo {
             }
 
             tabuleiro.inserirPeca(coluna, jogadorAtual);
-            vitoria = tabuleiro.verificarVitoria(jogadorAtual);
             tabuleiro.imprimirTabuleiro();
-
-            if (!vitoria) {
+            
+            vitoria = tabuleiro.verificarVitoria();
+            
+            if (vitoria == 0) {
                 jogadorAtual = (jogadorAtual == jogador1) ? jogador2 : jogador1;
             }
         }
 
-        if (vitoria) {
-            System.out.println("Parabéns, " + jogadorAtual.getNome() + "! Você venceu o jogo!");
+        if (vitoria == 1) {
+            System.out.println("Parabéns, " + jogador1.getNome() + "! Você venceu o jogo!");
+        } else if (vitoria == 2) {
+        	System.out.println("Parabéns, " + jogador2.getNome() + "! Você venceu o jogo!");
         } else {
-            System.out.println("O jogo terminou em empate.");
+        	System.out.println("O jogo terminou em empate.");
         }
     }
     
