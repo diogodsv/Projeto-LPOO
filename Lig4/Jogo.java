@@ -59,6 +59,7 @@ public class Jogo {
         } else {
         	System.out.println("O jogo terminou em empate.");
         }
+        sc.close();
     }
     
 }
