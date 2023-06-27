@@ -3,8 +3,9 @@ package Lig4;
 public class Tabuleiro {
 	public static final int COLUNAS = 7;
     public static final int LINHAS = 6;
-    private Peca[][] grid;
-    private Peca peca1, peca2;
+    protected Peca[][] grid;
+    protected Peca peca1;
+	protected Peca peca2;
 
     public Tabuleiro() {
         grid = new Peca[LINHAS][COLUNAS];
@@ -127,7 +128,7 @@ public class Tabuleiro {
         return 0;
     }
 
-    public class TabuleiroTurbo extends Tabuleiro {
+ /*   public class TabuleiroTurbo extends Tabuleiro {
 
     
     public void inserirPeca(int coluna, Jogador jogador) {
@@ -160,7 +161,7 @@ public class Tabuleiro {
         }
     }
 }
-
+*/
     public boolean isTabuleiroCheio() {
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS; j++) {

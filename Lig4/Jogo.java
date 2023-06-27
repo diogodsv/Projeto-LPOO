@@ -7,13 +7,28 @@ public class Jogo {
     private Jogador jogador1;
     private Jogador jogador2;
     private Jogador jogadorAtual;
-
-    public Jogo() {
-        tabuleiro = new Tabuleiro();
-    }
 	
     public void iniciarJogo() {
     	Scanner sc = new Scanner(System.in);
+    	
+    	int modoDeJogo = 0;
+    	while(modoDeJogo != 1 || modoDeJogo != 2) {
+    		System.out.println("Escolha o modo de jogo:");
+    		System.out.println("[1] CLÁSSICO");
+    		System.out.println("[2] TURBO");
+    		modoDeJogo = sc.nextInt();
+    		sc.nextLine();
+    		if(modoDeJogo < 1 || modoDeJogo > 2) {
+    			System.out.println("Modo de jogo inválido.");
+    		} else if(modoDeJogo == 1) {
+    			tabuleiro = new Tabuleiro();
+    			break;
+    		} else if(modoDeJogo == 2) {
+    			tabuleiro = new TabuleiroTurbo();
+    			break;
+    		}
+    	}
+    	
     	System.out.println("Nome do Jogador 1:");
     	String nome1 = sc.nextLine();
     	System.out.println("Nome do Jogador 2:");
