@@ -1,7 +1,7 @@
 package Lig4;
 
 public class TabuleiroTurbo extends Tabuleiro {
-	
+
     public void inserirPeca(int coluna, Jogador jogador) {
         int linha = LINHAS - 1;
         while (linha >= 0 && grid[linha][coluna] != null) {
@@ -28,7 +28,10 @@ public class TabuleiroTurbo extends Tabuleiro {
 
     private void alterarPecaVizinha(int linha, int coluna, Jogador jogador) {
         if (linha >= 0 && linha < LINHAS && coluna >= 0 && coluna < COLUNAS && grid[linha][coluna] != null) {
-            grid[linha][coluna].getJogador().setCor(jogador.getCor());
+            Peca pecaVizinha = new Peca(jogador);
+            pecaVizinha.setCor(jogador.getCor());
+            grid[linha][coluna] = pecaVizinha;
         }
     }
+
 }
