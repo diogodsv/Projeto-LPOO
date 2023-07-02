@@ -1,4 +1,4 @@
-package Lig4;
+package jogador;
 
 public class Jogador {
 	private String nome;

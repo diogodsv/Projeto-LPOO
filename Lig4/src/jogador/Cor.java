@@ -1,4 +1,4 @@
-package Lig4;
+package jogador;
 
 public class Cor {
 	public static final Cor AMARELO = new Cor("Amarelo", "A");
