@@ -5,19 +5,19 @@ import jogador.Jogador;
 import jogador.Peca;
 
 public class Tabuleiro {
-    private final int COLUNAS = 7;
-    private final int LINHAS = 6;
-    private Peca[][] grid;
-    private Peca peca1;
-    private Peca peca2;
+    protected static final int COLUNAS = 7;
+    protected static final int LINHAS = 6;
+    protected Peca[][] grid;
+    protected Peca peca1;
+    protected Peca peca2;
 
     public Tabuleiro() {
         grid = new Peca[LINHAS][COLUNAS];
     }
 
     public void inicializarTabuleiro() {
-        for (int i = 0; i < getLinhas(); i++) {
-            for (int j = 0; j < getColunas(); j++) {
+        for (int i = 0; i < LINHAS; i++) {
+            for (int j = 0; j < COLUNAS; j++) {
                 grid[i][j] = null;
             }
         }
@@ -34,27 +34,27 @@ public class Tabuleiro {
         }
 
         if (linha >= 0) {
-            Peca novaPeca = new Peca(jogador);
-            grid[linha][coluna] = novaPeca;
             if (jogador.getCor() == Cor.AMARELO) {
-                peca1 = novaPeca;
+                grid[linha][coluna] = new Peca(jogador);
+                peca1 = grid[linha][coluna];
             } else {
-                peca2 = novaPeca;
+                grid[linha][coluna] = new Peca(jogador);
+                peca2 = grid[linha][coluna];
             }
+
         }
     }
 
     public boolean verificarVitoriaVertical(Peca peca, String codigo) {
-        if (peca == null) {
-            return false;
-        }
         for (int i = 0; i < LINHAS - 3; i++) {
             for (int j = 0; j < COLUNAS; j++) {
-                if (grid[i][j] != null && grid[i][j] == peca &&
-                        grid[i + 1][j] == peca &&
-                        grid[i + 2][j] == peca &&
-                        grid[i + 3][j] == peca) {
-                    return true;
+                if (peca != null && grid[i][j] != null) {
+                    if (grid[i][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 1][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 2][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 3][j].getJogador().getCor().getCodigo().equals(codigo)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -62,16 +62,16 @@ public class Tabuleiro {
     }
 
     public boolean verificarVitoriaHorizontal(Peca peca, String codigo) {
-        if (peca == null) {
-            return false;
-        }
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
-                if (grid[i][j] != null && grid[i][j] == peca &&
-                        grid[i][j + 1] == peca &&
-                        grid[i][j + 2] == peca &&
-                        grid[i][j + 3] == peca) {
-                    return true;
+                if (peca != null && grid[i][j] != null &&
+                        (grid[i][j + 1] != null && grid[i][j + 2] != null && grid[i][j + 3] != null)) {
+                    if ((grid[i][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i][j + 1].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i][j + 2].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i][j + 3].getJogador().getCor().getCodigo().equals(codigo))) {
+                        return true;
+                    }
                 }
             }
         }
@@ -81,11 +81,16 @@ public class Tabuleiro {
     public boolean verificarVitoriaDiagonalAscendente(Peca peca, String codigo) {
         for (int i = 3; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
-                if (grid[i][j] != null && grid[i][j] == peca &&
-                        grid[i - 1][j + 1] == peca &&
-                        grid[i - 2][j + 2] == peca &&
-                        grid[i - 3][j + 3] == peca) {
-                    return true;
+                if (peca != null && grid[i][j] != null &&
+                        grid[i - 1][j + 1] != null &&
+                        grid[i - 2][j + 2] != null &&
+                        grid[i - 3][j + 3] != null) {
+                    if (grid[i][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i - 1][j + 1].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i - 2][j + 2].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i - 3][j + 3].getJogador().getCor().getCodigo().equals(codigo)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -95,11 +100,16 @@ public class Tabuleiro {
     public boolean verificarVitoriaDiagonalDescendente(Peca peca, String codigo) {
         for (int i = 0; i < LINHAS - 3; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
-                if (grid[i][j] != null && grid[i][j] == peca &&
-                        grid[i + 1][j + 1] == peca &&
-                        grid[i + 2][j + 2] == peca &&
-                        grid[i + 3][j + 3] == peca) {
-                    return true;
+                if (peca != null && grid[i][j] != null &&
+                        grid[i + 1][j + 1] != null &&
+                        grid[i + 2][j + 2] != null &&
+                        grid[i + 3][j + 3] != null) {
+                    if (grid[i][j].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 1][j + 1].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 2][j + 2].getJogador().getCor().getCodigo().equals(codigo) &&
+                            grid[i + 3][j + 3].getJogador().getCor().getCodigo().equals(codigo)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -147,14 +157,6 @@ public class Tabuleiro {
         System.out.println("1 2 3 4 5 6 7");
     }
 
-    public int getColunas() {
-        return COLUNAS;
-    }
-
-    public int getLinhas() {
-        return LINHAS;
-    }
-
     public Peca[][] getGrid() {
         return grid;
     }
@@ -166,4 +168,13 @@ public class Tabuleiro {
     public Peca getPeca2() {
         return peca2;
     }
+
+    public int getColunas() {
+        return COLUNAS;
+    }
+
+    public int getLinhas() {
+        return LINHAS;
+    }
+
 }
