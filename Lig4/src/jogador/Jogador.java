@@ -1,23 +1,23 @@
 package jogador;
 
 public class Jogador {
-	private String nome;
+    private String nome;
     private Cor cor;
-	
-	public Jogador(String nome, Cor cor) {
-		this.nome = nome;
+
+    public Jogador(String nome, Cor cor) {
+        this.nome = nome;
         this.cor = cor;
-	}
-	
-	public String getNome() {
+    }
+
+    public String getNome() {
         return nome;
     }
 
     public Cor getCor() {
         return cor;
     }
-    
-    public void setCor (Cor cor) {
+
+    public void setCor(Cor cor) {
         this.cor = cor;
     }
 }

@@ -1,13 +1,13 @@
 package jogador;
 
 public class Cor {
-	public static final Cor AMARELO = new Cor("Amarelo", "A");
+    public static final Cor AMARELO = new Cor("Amarelo", "A");
     public static final Cor VERMELHO = new Cor("Vermelho", "V");
 
-    private String nome;
-    private String codigo;
+    private final String nome;
+    private final String codigo;
 
-    private Cor(String nome, String codigo) {
+    public Cor(String nome, String codigo) {
         this.nome = nome;
         this.codigo = codigo;
     }
