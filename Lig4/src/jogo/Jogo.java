@@ -2,6 +2,8 @@ package jogo;
 
 import java.util.Scanner;
 
+import jogador.Cor;
+import jogador.Jogador;
 import tabuleiro.Tabuleiro;
 import tabuleiro.TabuleiroTurbo;
 import tabuleiro.TabuleiroTurboMaluco;
@@ -115,7 +117,7 @@ public class Jogo {
             selecionarNivelDeMaluquice(sc);
         }
     }
-    
+
     public void selecionarNivelDeMaluquice(Scanner sc) {
         int nivel = 0;
         while (nivel != 1 && nivel != 2 && nivel != 3) {
@@ -138,9 +140,9 @@ public class Jogo {
         if (nivel == 1) {
             tabuleiro.setNivel(1);
         } else if (nivel == 2) {
-        	tabuleiro.setNivel(2);
+            tabuleiro.setNivel(2);
         } else if (nivel == 3) {
-        	tabuleiro.setNivel(3);
+            tabuleiro.setNivel(3);
         }
     }
 
