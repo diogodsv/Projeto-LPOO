@@ -27,12 +27,12 @@ public class TabuleiroTurbo extends Tabuleiro {
         }
     }
 
-    private void alterarPecasVizinhas(int linha, int coluna, Jogador jogador) {
+    public void alterarPecasVizinhas(int linha, int coluna, Jogador jogador) {
         alterarPecaVizinha(linha, coluna - 1, jogador);
         alterarPecaVizinha(linha, coluna + 1, jogador);
     }
 
-    private void alterarPecaVizinha(int linha, int coluna, Jogador jogador) {
+    public void alterarPecaVizinha(int linha, int coluna, Jogador jogador) {
         Peca[][] grid = getGrid();
         int linhas = getLinhas();
         int colunas = getColunas();

@@ -2,10 +2,9 @@ package jogo;
 
 import java.util.Scanner;
 
-import jogador.Cor;
-import jogador.Jogador;
 import tabuleiro.Tabuleiro;
 import tabuleiro.TabuleiroTurbo;
+import tabuleiro.TabuleiroTurboMaluco;
 
 public class Jogo {
 
@@ -90,14 +89,15 @@ public class Jogo {
 
     public void selecionarModoDeJogo(Scanner sc) {
         int modoDeJogo = 0;
-        while (modoDeJogo != 1 && modoDeJogo != 2) {
+        while (modoDeJogo != 1 && modoDeJogo != 2 && modoDeJogo != 3) {
             System.out.println("Escolha o modo de jogo:");
             System.out.println("[1] CLÁSSICO");
             System.out.println("[2] TURBO");
+            System.out.println("[3] TURBO MALUCO");
             if (sc.hasNextInt()) {
                 modoDeJogo = sc.nextInt();
                 sc.nextLine();
-                if (modoDeJogo < 1 || modoDeJogo > 2) {
+                if (modoDeJogo < 1 || modoDeJogo > 3) {
                     System.out.println("Modo de jogo inválido.");
                 }
             } else {
@@ -110,6 +110,37 @@ public class Jogo {
             tabuleiro = new Tabuleiro();
         } else if (modoDeJogo == 2) {
             tabuleiro = new TabuleiroTurbo();
+        } else if (modoDeJogo == 3) {
+            tabuleiro = new TabuleiroTurboMaluco();
+            selecionarNivelDeMaluquice(sc);
+        }
+    }
+    
+    public void selecionarNivelDeMaluquice(Scanner sc) {
+        int nivel = 0;
+        while (nivel != 1 && nivel != 2 && nivel != 3) {
+            System.out.println("Escolha o nível de maluquice:");
+            System.out.println("[1] MALUCO");
+            System.out.println("[2] MALUCO BELEZA");
+            System.out.println("[3] MALUCO NO PEDAÇO");
+            if (sc.hasNextInt()) {
+                nivel = sc.nextInt();
+                sc.nextLine();
+                if (nivel < 1 || nivel > 3) {
+                    System.out.println("Nível de maluquice inválido.");
+                }
+            } else {
+                sc.nextLine();
+                System.out.println("Entrada inválida. Digite um número de modo válido.");
+            }
+        }
+
+        if (nivel == 1) {
+            tabuleiro.setNivel(1);
+        } else if (nivel == 2) {
+        	tabuleiro.setNivel(2);
+        } else if (nivel == 3) {
+        	tabuleiro.setNivel(3);
         }
     }
 

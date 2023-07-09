@@ -10,6 +10,7 @@ public class Tabuleiro {
     protected Peca[][] grid;
     protected Peca peca1;
     protected Peca peca2;
+    private int nivel;
 
     public Tabuleiro() {
         grid = new Peca[LINHAS][COLUNAS];
@@ -175,6 +176,14 @@ public class Tabuleiro {
 
     public int getLinhas() {
         return LINHAS;
+    }
+    
+    public int getNivel() {
+    	return nivel;
+    }
+    
+    public void setNivel(int nivel) {
+    	this.nivel = nivel;
     }
 
 }
