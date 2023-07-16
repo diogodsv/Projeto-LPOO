@@ -2,8 +2,8 @@ package jogador;
 
 public class Peca {
 
-	private Jogador jogador;
-	private Cor cor;
+    private Jogador jogador;
+    private Cor cor;
 
     public Peca(Jogador jogador) {
         this.jogador = jogador;

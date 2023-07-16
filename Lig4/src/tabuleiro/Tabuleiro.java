@@ -177,13 +177,13 @@ public class Tabuleiro {
     public int getLinhas() {
         return LINHAS;
     }
-    
+
     public int getNivel() {
-    	return nivel;
+        return nivel;
     }
-    
+
     public void setNivel(int nivel) {
-    	this.nivel = nivel;
+        this.nivel = nivel;
     }
 
 }
