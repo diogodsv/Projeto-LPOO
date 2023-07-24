@@ -3,6 +3,7 @@ package tabuleiro;
 import jogador.Cor;
 import jogador.Jogador;
 import jogador.Peca;
+import jogo.ValorAtributoInvalidoException;
 
 public class Tabuleiro implements ITabuleiro {
     protected static final int COLUNAS = 7;
@@ -24,10 +25,12 @@ public class Tabuleiro implements ITabuleiro {
         }
     }
 
+    @Override
     public boolean isColunaCheia(int coluna) {
         return grid[0][coluna] != null;
     }
 
+    @Override
     public void inserirPeca(int coluna, Jogador jogador) {
         int linha = LINHAS - 1;
         while (linha >= 0 && grid[linha][coluna] != null) {
@@ -46,6 +49,7 @@ public class Tabuleiro implements ITabuleiro {
         }
     }
 
+    @Override
     public boolean verificarVitoriaVertical(Peca peca, String codigo) {
         for (int i = 0; i < LINHAS - 3; i++) {
             for (int j = 0; j < COLUNAS; j++) {
@@ -62,6 +66,7 @@ public class Tabuleiro implements ITabuleiro {
         return false;
     }
 
+    @Override
     public boolean verificarVitoriaHorizontal(Peca peca, String codigo) {
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
@@ -79,6 +84,7 @@ public class Tabuleiro implements ITabuleiro {
         return false;
     }
 
+    @Override
     public boolean verificarVitoriaDiagonalAscendente(Peca peca, String codigo) {
         for (int i = 3; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
@@ -98,6 +104,7 @@ public class Tabuleiro implements ITabuleiro {
         return false;
     }
 
+    @Override
     public boolean verificarVitoriaDiagonalDescendente(Peca peca, String codigo) {
         for (int i = 0; i < LINHAS - 3; i++) {
             for (int j = 0; j < COLUNAS - 3; j++) {
@@ -117,6 +124,7 @@ public class Tabuleiro implements ITabuleiro {
         return false;
     }
 
+    @Override
     public int verificarVitoria() {
         if (peca1 != null && (verificarVitoriaVertical(peca1, "A") ||
                 verificarVitoriaHorizontal(peca1, "A") ||
@@ -133,6 +141,7 @@ public class Tabuleiro implements ITabuleiro {
         return 0;
     }
 
+    @Override
     public boolean isTabuleiroCheio() {
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS; j++) {
@@ -144,6 +153,7 @@ public class Tabuleiro implements ITabuleiro {
         return true;
     }
 
+    @Override
     public void imprimirTabuleiro() {
         for (int i = 0; i < LINHAS; i++) {
             for (int j = 0; j < COLUNAS; j++) {
@@ -183,6 +193,9 @@ public class Tabuleiro implements ITabuleiro {
     }
 
     public void setNivel(int nivel) {
+        if (nivel < 1 || nivel > 3) {
+            throw new ValorAtributoInvalidoException("Nível de maluquice inválido. Deve ser um valor entre 1 e 3.");
+        }
         this.nivel = nivel;
     }
 

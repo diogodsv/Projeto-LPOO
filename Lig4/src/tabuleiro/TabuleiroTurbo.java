@@ -3,10 +3,14 @@ package tabuleiro;
 import jogador.Cor;
 import jogador.Jogador;
 import jogador.Peca;
+import jogo.ValorAtributoInvalidoException;
 
 public class TabuleiroTurbo extends Tabuleiro {
 
     public void inserirPeca(int coluna, Jogador jogador) {
+        if (jogador == null) {
+            throw new ValorAtributoInvalidoException("O jogador não pode ser nulo.");
+        }
         Peca[][] grid = getGrid();
 
         int linha = getLinhas() - 1;

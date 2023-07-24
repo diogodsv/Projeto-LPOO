@@ -161,6 +161,9 @@ public class Jogo {
     }
 
     public void setTabuleiro(Tabuleiro tabuleiro) {
+        if (tabuleiro == null) {
+            throw new ValorAtributoInvalidoException("Tabuleiro não pode ser nulo.");
+        }
         this.tabuleiro = tabuleiro;
     }
 
@@ -169,6 +172,13 @@ public class Jogo {
     }
 
     public void setJogador1(Jogador jogador1) {
+        if (jogador1 == null) {
+            throw new ValorAtributoInvalidoException("Jogador1 não pode ser nulo.");
+        }
+
+        if (jogador1.getCor() != Cor.AMARELO && jogador1.getCor() != Cor.VERMELHO) {
+            throw new ValorAtributoInvalidoException("Cor inválida para Jogador 1.");
+        }
         this.jogador1 = jogador1;
     }
 
@@ -177,6 +187,13 @@ public class Jogo {
     }
 
     public void setJogador2(Jogador jogador2) {
+        if (jogador2 == null) {
+            throw new ValorAtributoInvalidoException("Jogador2 não pode ser nulo.");
+        }
+
+        if (jogador2.getCor() != Cor.AMARELO && jogador2.getCor() != Cor.VERMELHO) {
+            throw new ValorAtributoInvalidoException("Cor inválida para Jogador 2.");
+        }
         this.jogador2 = jogador2;
     }
 
@@ -185,6 +202,13 @@ public class Jogo {
     }
 
     public void setJogadorAtual(Jogador jogadorAtual) {
+        if (jogadorAtual == null) {
+            throw new ValorAtributoInvalidoException("JogadorAtual não pode ser nulo.");
+        }
+
+        if (jogadorAtual.getCor() != Cor.AMARELO && jogadorAtual.getCor() != Cor.VERMELHO) {
+            throw new ValorAtributoInvalidoException("Cor inválida para JogadorAtual.");
+        }
         this.jogadorAtual = jogadorAtual;
     }
 }
