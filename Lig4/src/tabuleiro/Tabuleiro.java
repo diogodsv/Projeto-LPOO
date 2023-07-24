@@ -4,7 +4,7 @@ import jogador.Cor;
 import jogador.Jogador;
 import jogador.Peca;
 
-public class Tabuleiro {
+public class Tabuleiro implements ITabuleiro {
     protected static final int COLUNAS = 7;
     protected static final int LINHAS = 6;
     protected Peca[][] grid;
