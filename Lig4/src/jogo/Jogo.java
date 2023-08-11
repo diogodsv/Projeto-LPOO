@@ -1,6 +1,12 @@
 package jogo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import jogador.Cor;
 import jogador.Jogador;
@@ -14,9 +20,11 @@ public class Jogo {
     private Jogador jogador1;
     private Jogador jogador2;
     private Jogador jogadorAtual;
+    private List<Jogador> winners = new ArrayList<>();
+
+    private Scanner sc = new Scanner(System.in);
 
     public void iniciarJogo() {
-        Scanner sc = new Scanner(System.in);
 
         selecionarModoDeJogo(sc);
         obterNomesDosJogadores(sc);
@@ -41,7 +49,6 @@ public class Jogo {
 
         exibirResultado(vitoria);
 
-        sc.close();
     }
 
     public int obterColunaValida(Scanner sc) {
@@ -147,13 +154,52 @@ public class Jogo {
     }
 
     public void exibirResultado(int vitoria) {
+        Jogador winner = null;
         if (vitoria == 1) {
             System.out.println("Parabéns, " + jogador1.getNome() + "! Você venceu o jogo!");
+            winner = jogador1;
         } else if (vitoria == 2) {
             System.out.println("Parabéns, " + jogador2.getNome() + "! Você venceu o jogo!");
+            winner = jogador2;
         } else {
             System.out.println("O jogo terminou em empate.");
         }
+        if (winner != null) {
+            winners.add(winner);
+        }
+    }
+
+    public void exibirRanking() {
+        Map<String, Integer> playerWins = new HashMap<>();
+        for (Jogador winner : winners) {
+            String nomeJogador = winner.getNome();
+            playerWins.put(nomeJogador, playerWins.getOrDefault(nomeJogador, 0) + 1);
+        }
+
+        Map<Integer, List<String>> playersByWins = new TreeMap<>(Collections.reverseOrder());
+
+        for (Map.Entry<String, Integer> entry : playerWins.entrySet()) {
+            int wins = entry.getValue();
+            String playerName = entry.getKey();
+            playersByWins.computeIfAbsent(wins, k -> new ArrayList<>()).add(playerName);
+        }
+
+        System.out.println("Ranking de Vencedores:");
+        int rank = 1;
+        for (Map.Entry<Integer, List<String>> entry : playersByWins.entrySet()) {
+            int wins = entry.getKey();
+            List<String> players = entry.getValue();
+
+            for (String playerName : players) {
+                System.out.println(rank + ". " + playerName + " - Vitórias: " + wins);
+                rank++;
+            }
+        }
+
+    }
+
+    public void fecharScanner() {
+        sc.close();
     }
 
     public Tabuleiro getTabuleiro() {
