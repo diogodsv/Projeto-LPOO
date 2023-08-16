@@ -51,7 +51,6 @@ public class Jogo extends JFrame implements ActionListener, MouseListener {
 	private JLabel cabecalho;
 	private JLabel labels[];
 	private JButton botaoJogar;
-	private JButton botaoRanking;
 	private JButton botaoSair;
 	private JButton classico;
 	private JButton turbo;
@@ -74,7 +73,7 @@ public class Jogo extends JFrame implements ActionListener, MouseListener {
 	private boolean ativado2;
 	private List<Jogador> winners = new ArrayList<>();
 	
-	public InterfaceGrafica(){
+	public Jogo(){
 		titulo = new JPanel();
 		menu = new JPanel();
 		contrape = new JPanel();
@@ -112,10 +111,10 @@ public class Jogo extends JFrame implements ActionListener, MouseListener {
 		cabecalho.setHorizontalAlignment(JLabel.CENTER);
 		
 		botaoJogar = new JButton("JOGAR");
-		botaoRanking = new JButton("RANKING");
 		botaoSair = new JButton("SAIR");
+		JButton teste = new JButton();
 		
-		criarBotoes(botaoJogar, botaoRanking, botaoSair);
+		criarBotoes(botaoJogar, teste, botaoSair);
 		
 		classico = new JButton("CLÁSSICO");
 		turbo = new JButton("TURBO");
@@ -131,7 +130,6 @@ public class Jogo extends JFrame implements ActionListener, MouseListener {
 		
 		titulo.add(cabecalho);
 		menu.add(botaoJogar);
-		menu.add(botaoRanking);
 		menu.add(botaoSair);
 		contrape.add(nomes);
 		
@@ -456,7 +454,6 @@ public class Jogo extends JFrame implements ActionListener, MouseListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == botaoJogar) {
 			menu.remove(botaoJogar);
-			menu.remove(botaoRanking);
 			menu.remove(botaoSair);
 			contrape.remove(nomes);
 			cabecalho.setText("Selecione o modo de jogo:");
