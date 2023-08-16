@@ -14,6 +14,5 @@ public interface ITabuleiro {
 	public boolean verificarVitoriaDiagonalDescendente(Peca peca, String codigo);
 	public int verificarVitoria();
 	public boolean isTabuleiroCheio();
-	public void imprimirTabuleiro();
 	
 }

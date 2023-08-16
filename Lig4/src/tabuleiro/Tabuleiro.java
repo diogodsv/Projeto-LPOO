@@ -153,21 +153,6 @@ public class Tabuleiro implements ITabuleiro {
         return true;
     }
 
-    @Override
-    public void imprimirTabuleiro() {
-        for (int i = 0; i < LINHAS; i++) {
-            for (int j = 0; j < COLUNAS; j++) {
-                if (grid[i][j] == null) {
-                    System.out.print("- ");
-                } else {
-                    System.out.print(grid[i][j].getJogador().getCor().getCodigo() + " ");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("1 2 3 4 5 6 7");
-    }
-
     public Peca[][] getGrid() {
         return grid;
     }
